@@ -1,0 +1,27 @@
+html,
+body {
+  height: 100%;
+}
+
+.box.flex {
+  display: flex;
+  justify-content: center;
+}
+
+.box {
+  padding: 0.5rem;
+  height: 80%;
+  border-radius: 4px;
+  align-items: center;
+}
+
+.box div {
+  background: rgba(255, 255, 255, 0.5);
+  margin: 0.25rem;
+  padding: 0.25rem;
+  align-self: center;
+}
+
+input {
+  font-size: 1.2em;
+}
