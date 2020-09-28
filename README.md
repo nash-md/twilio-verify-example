@@ -18,13 +18,12 @@ To run the application, you'll need to gather your Twilio account credentials an
 
 Before you start the install, you’ll need to collect the following variables from the Twilio Account Portal.
 
-`TWILIO_ACCOUNT_SID`
-
+`TWILIO_ACCOUNT_SID`\
 `TWILIO_AUTH_TOKEN`
 
 ### Configure the Verify Service
 
-Create a [Notify Service](https://www.twilio.com/docs/verify/quickstarts/push-android#configure-or-select-a-notify-service) for Push.
+Create a [Notify Service](https://www.twilio.com/docs/verify/quickstarts/push-android#configure-or-select-a-notify-service) for Push.\
 Configure a [Verify Service](https://www.twilio.com/docs/verify/quickstarts/push-android#configure-a-verify-service)
 
 To run this application you need to host it on a public domain. If a user approves a challenge the server is notified via [Verify Webhooks](https://www.twilio.com/docs/verify/api/webhooks). Please configure `http(s)://<your-domain>/api/challenges/update-webhook` as webhook url on the Verify Service. You can subscribe to multiple events on Verify, this example appliation requires at least the `challenge.approved` and `challenge.denied` event.
