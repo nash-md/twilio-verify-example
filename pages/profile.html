@@ -6,26 +6,32 @@
 
     <title>Profile</title>
 
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
-      integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I"
-      crossorigin="anonymous"
-    />
+    <link rel="stylesheet" href="/styles/bulma.css" />
     <link rel="stylesheet" href="/styles/default.css" />
   </head>
 
   <body>
-    <div class="box flex">
-      <div>
+    <div class="main">
+      <div class="container" style="max-width: 760px">
         <div style="text-align: right"><a href="/logout">logout</a></div>
 
-        <h2>Hey {{name}}, this is your personal profile</h2>
+        <h2 class="is-size-3 mb-2">{{name}}, this is your personal profile</h2>
 
-        <p>session expires in: {{expiresIn}} minutes</p>
+        <div style="line-height: 2.2em">Session expires in: {{expiresIn}} minutes</div>
 
-        <p>2FA Login via Push: {{status}};</p>
+        <div style="line-height: 2.2em">
+          <b>2FA Login via Push:</b> {{#pushIsEnabled}}
+          <span style="display: inline-block" class="icon has-text-success">
+            <i class="fas fa-check-square"></i>
+          </span>
+          {{/pushIsEnabled}} {{#pushIsDisabled}}
+          <span style="display: inline-block" class="icon has-text-danger">
+            <i class="fas fa-ban"></i>
+          </span>
+          {{/pushIsDisabled}}
+        </div>
       </div>
     </div>
+    <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
   </body>
 </html>

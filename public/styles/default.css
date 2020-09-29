@@ -3,25 +3,16 @@ body {
   height: 100%;
 }
 
-.box.flex {
+.main {
   display: flex;
-  justify-content: center;
-}
-
-.box {
-  padding: 0.5rem;
-  height: 80%;
-  border-radius: 4px;
+  height: 100%;
   align-items: center;
 }
 
-.box div {
-  background: rgba(255, 255, 255, 0.5);
-  margin: 0.25rem;
-  padding: 0.25rem;
-  align-self: center;
-}
-
-input {
-  font-size: 1.2em;
+.main > div {
+  flex-direction: column;
+  justify-content: center;
+  vertical-align: center;
+  width: 100%;
+  height: 20%;
 }
