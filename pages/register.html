@@ -5,30 +5,42 @@
     <meta charset="utf-8" />
 
     <title>Register</title>
-
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
-      integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I"
-      crossorigin="anonymous"
-    />
-
+    <link rel="stylesheet" href="/styles/bulma.css" />
     <link rel="stylesheet" href="/styles/default.css" />
   </head>
 
   <body>
-    <div class="box flex">
-      <div>
-        <h2>Create your account.</h2>
+    <div class="main">
+      <div class="container" style="max-width: 760px">
+        <h2 class="is-size-3 mb-2">Creat your account</h2>
 
-        <input id="name" type="text" placeholder="Your name ..." />
-
-        <input id="password" type="password" placeholder=".... and your passsord" />
-
-        <button id="register-button">Register</button>
+        <div class="columns is-1 is-variable" style="margin-bottom: 0; margin-top: 0">
+          <div class="column">
+            <div class="field">
+              <p class="control">
+                <input id="name" class="input" type="name" placeholder="Name" />
+              </p>
+            </div>
+          </div>
+          <div class="column">
+            <div class="field">
+              <p class="control has-icons-left">
+                <input id="password" class="input" type="password" placeholder="Password" />
+                <span class="icon is-small is-left">
+                  <i class="fas fa-lock"></i>
+                </span>
+              </p>
+            </div>
+          </div>
+          <div class="column">
+            <div class="buttons">
+              <button id="register-button" class="button is-primary">register</button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-
     <script src="scripts/register.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
   </body>
 </html>
