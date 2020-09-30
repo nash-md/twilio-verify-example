@@ -8,7 +8,7 @@ This repository contains the website and the server backend written in NodeJS. F
 
 ## Device Registration
 
-![Device Registration Flow](device-registration.png)
+![Device Registration Flow](device-registration-flow.png)
 
 ## Installation
 
