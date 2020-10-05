@@ -14,12 +14,4 @@ const update = (request, response) => {
   response.status(200).end();
 };
 
-const status = async (request, response) => {
-  if (!request.session.challenge) return request.status(404).end();
-
-  const status = context.challenges.get(request.session.challenge.sid);
-
-  response.json({ status: status });
-};
-
-module.exports = { status, update };
+module.exports = { update };

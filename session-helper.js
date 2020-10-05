@@ -6,7 +6,7 @@ const helper = {
       return false;
     }
 
-    const status = context.challenges.get(request.session.challenge.sid);
+    const { status } = context.challenges.get(request.session.challenge.sid);
 
     return status !== 'approved';
   },

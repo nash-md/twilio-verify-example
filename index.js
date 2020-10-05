@@ -2,8 +2,10 @@ require('dotenv').config();
 
 const context = require('./context');
 
+const http = require('http');
 const express = require('express');
 const session = require('express-session');
+const { registerWebsocketServer } = require('./websocket-server');
 
 const register = require('./controllers/register');
 const login = require('./controllers/login');
@@ -33,11 +35,11 @@ app.post('/api/login', login);
 app.post('/api/register', register);
 
 // middleware to validate session
-app.post('/api/devices/token', devices.token); // TODO SESSON VALIADTION MISSING!!
-app.post('/api/devices/register', validateSession, devices.register); // TODO SESSON VALIADTION MISSING!!
+app.post('/api/devices/token', validateSession, devices.token);
+app.post('/api/devices/register', validateSession, devices.register);
 
 app.post('/api/challenges/update-webhook', challenges.update);
-app.get('/api/challenges/status', validateSession, challenges.status);
+// app.get('/api/challenges/status', validateSession, challenges.status);
 
 app.get('/push-challenge-pending', validateSession, pages.pending);
 app.get('/profile', validateSessionWithMultifactor, pages.profile);
@@ -50,6 +52,10 @@ app.use(express.static('public'));
 
 const port = process.env.PORT || '5000';
 
-app.listen(port, () => {
+const server = http.createServer(app);
+
+registerWebsocketServer(server);
+
+server.listen(port, () => {
   console.log(`Listening to requests on http://localhost:${port}`);
 });

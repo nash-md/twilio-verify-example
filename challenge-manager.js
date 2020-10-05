@@ -2,7 +2,7 @@ const twilio = require('twilio');
 
 class ChallengeManager {
   constructor() {
-    this.client = twilio(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
+    this.socket = twilio(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
     this.challenges = new Map();
   }
 
@@ -14,7 +14,7 @@ class ChallengeManager {
       fields: fields
     });
 
-    const challenge = await this.client.verify
+    const challenge = await this.socket.verify
       .services(process.env.TWILIO_VERIFY_SERVICE_SID)
       .entities(user.id)
       .challenges.create({
@@ -22,17 +22,12 @@ class ChallengeManager {
         details: details
       });
 
-    this.challenges.set(challenge.sid, challenge.status);
+    this.challenges.set(challenge.sid, {
+      status: challenge.status,
+      socket: undefined
+    });
 
     return challenge;
-  }
-  // TODO, get from API?
-  async getFromApi(user, sid) {
-    return await this.client.verify
-      .services(process.env.TWILIO_VERIFY_SERVICE_SID)
-      .entities(user.id)
-      .challenges(sid)
-      .fetch();
   }
 
   get(sid) {
@@ -40,7 +35,17 @@ class ChallengeManager {
   }
 
   update(sid, status) {
-    this.challenges.set(sid, status);
+    const { socket } = this.challenges.get(sid);
+
+    this.challenges.set(sid, { socket, status });
+
+    socket && socket.send(JSON.stringify({ status: status }));
+  }
+
+  registerSocket(sid, socket) {
+    const { status } = this.challenges.get(sid);
+
+    this.challenges.set(sid, { status, socket });
   }
 }
 

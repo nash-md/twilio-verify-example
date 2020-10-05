@@ -24,7 +24,8 @@ module.exports.profile = (request, response) => {
 
   const view = {
     name: user.name,
-    status: helper.hasPushVerificationEnabled(user) ? 'enabled' : 'disabled',
+    pushIsDisabled: !helper.hasPushVerificationEnabled(user) ? true : false,
+    pushIsEnabled: helper.hasPushVerificationEnabled(user) ? true : false,
     expiresIn: Math.round(request.session.cookie.maxAge / 1000 / 60)
   };
 
@@ -39,6 +40,8 @@ module.exports.pending = (request, response) => {
   const view = {
     name: request.session.user.name
   };
+
+  view.challengeSid = request.session.challenge.sid || '';
 
   let render = mustache.render(page, view);
 
