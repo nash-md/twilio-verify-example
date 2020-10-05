@@ -2,7 +2,7 @@ const twilio = require('twilio');
 
 class ChallengeManager {
   constructor() {
-    this.socket = twilio(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
+    this.client = twilio(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
     this.challenges = new Map();
   }
 
@@ -14,7 +14,7 @@ class ChallengeManager {
       fields: fields
     });
 
-    const challenge = await this.socket.verify
+    const challenge = await this.client.verify
       .services(process.env.TWILIO_VERIFY_SERVICE_SID)
       .entities(user.id)
       .challenges.create({
