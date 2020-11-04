@@ -6,6 +6,8 @@ Twilio Verify Push SDK helps you adding multi-factor sdcurity with a low-frictio
 
 This repository contains the website and the server backend written in NodeJS. For the mobile application please checkout the [Android Quickstart](https://github.com/twilio/twilio-verify-android) and [iOS Quickstart](https://github.com/twilio/twilio-verify-ios).
 
+You can watch a video on Twitch that demonstrates this project. [Twilio Verify Push @ Signal TV 2020](https://www.twitch.tv/videos/759095000)
+
 ## Device Registration
 
 ![Device Registration Flow](device-registration-flow.png)
